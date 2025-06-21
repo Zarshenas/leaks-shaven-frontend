@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Upload ,Share2 , MoreVertical, Link2, Archive } from "lucide-react";
+import { Upload, Share2, MoreVertical, Link2, Archive } from "lucide-react";
 import React from "react";
 import { convertDate } from "../../utils/dateConvertor";
 import { Link } from "react-router";
@@ -24,7 +24,7 @@ function ModelCard({ model }) {
               <span>{model.lpagery_categories}</span>
             </div>
             <div className="flex items-center gap-1">
-              <Upload  className="w-4 h-4" />
+              <Upload className="w-4 h-4" />
               <span>
                 {convertDate(model.lpagery_publish_date, "dd/MM/yyyy")}
               </span>
@@ -45,20 +45,20 @@ function ModelCard({ model }) {
         </Link>
       </CardContent>
 
-      <CardFooter className="flex justify-between mt-2 p-0">
-        <Link to={model.downloadbutton} target="_blank">
-          <Button variant="outline">
+      <CardFooter className="mt-2 p-0">
+        <Link className="w-full" to={model.downloadbutton} target="_blank">
+          <Button className="w-full" variant="outline">
             <Link2 />
             Open Link
           </Button>
         </Link>
-        <Button variant="outline">
+        {/* <Button variant="outline">
           <MoreVertical />
           More
         </Button>
         <Button variant="outline" size="icon">
           <Share2 />
-        </Button>
+        </Button> */}
       </CardFooter>
     </Card>
   );
