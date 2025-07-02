@@ -19,25 +19,25 @@ function ModelCard({ model }) {
         <CardTitle className="text-lg">{model.title}</CardTitle>
         <div className="text-sm text-neutral-400 space-y-1 mt-2">
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1">
-              <Archive className="w-4 h-4" />
-              <span>{model.lpagery_categories}</span>
-            </div>
+            {model.categories.map((category) => (
+              <div key={category.id} className="flex items-center gap-1">
+                <Archive className="w-4 h-4" />
+                <span>{category.name}</span>
+              </div>
+            ))}
             <div className="flex items-center gap-1">
               <Upload className="w-4 h-4" />
-              <span>
-                {convertDate(model.lpagery_publish_date, "dd/MM/yyyy")}
-              </span>
+              <span>{convertDate(model.publish_date, "dd/MM/yyyy")}</span>
             </div>
           </div>
         </div>
       </CardHeader>
 
       <CardContent className="p-0">
-        <Link to={model.downloadbutton} target="_blank">
+        <Link to={model.download_url} target="_blank">
           <div className="w-full h-[400px] overflow-hidden rounded-lg ">
             <LazyImage
-              src={model.img}
+              src={model.image_url}
               alt={model.title}
               className="w-full rounded-lg object-fill h-[400px] hover:scale-105 transition-transform duration-300"
             />
@@ -46,7 +46,7 @@ function ModelCard({ model }) {
       </CardContent>
 
       <CardFooter className="mt-2 p-0">
-        <Link className="w-full" to={model.downloadbutton} target="_blank">
+        <Link className="w-full" to={model.download_url} target="_blank">
           <Button className="w-full" variant="outline">
             <Link2 />
             Open Link

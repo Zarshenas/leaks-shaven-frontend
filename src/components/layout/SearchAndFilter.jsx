@@ -1,12 +1,14 @@
 import React from 'react'
-import SelectOption from '../SelectOption'
+import CategoriesSelectOption from '../CategoriesSelectOption'
 import SearchBox from '../SearchBox'
+import TagsSelectOption from '../TagsSelectOption'
 
 function SearchAndFilter() {
   return (
-    <div className='w-full flex justify-start gap-2 items-center px-4'>
+    <div className='w-full flex-wrap flex justify-center gap-2 items-center px-4 sm:justify-start'>
         <SearchBox/>
-        <SelectOption />
+        <CategoriesSelectOption />
+        <TagsSelectOption />
     </div>
   )
 }

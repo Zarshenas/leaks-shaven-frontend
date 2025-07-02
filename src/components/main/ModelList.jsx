@@ -74,6 +74,7 @@ function ModelList() {
       </div>
 
       <div ref={ref} className="py-8 text-center">
+        {console.log(isFetchingNextPage)}
         {isFetchingNextPage ? (
           <Badge variant={"outline"} className="text-gray-600 text-md">
             <Loader />

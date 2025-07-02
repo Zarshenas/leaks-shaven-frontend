@@ -1,9 +1,5 @@
 import axios from "axios";
 
-// export const getModels = () =>
-//   axios.get("/api/sheet-data/?page=1&page_size=10", {
-//   });
-
 const MODELS_API_ENDPOINT = "/api/sheet-data/";
 
 /**
@@ -13,12 +9,17 @@ const MODELS_API_ENDPOINT = "/api/sheet-data/";
  * @returns {Promise<Object>} The API response containing results, current page, count, etc.
  */
 
-export const getModels = async ({ page, limit }) => {
-  const response = await axios.get(MODELS_API_ENDPOINT, {
-    params: {
-      page: page,
-      page_size: limit,
-    },
-  });
-  return response.data; // Assuming response.data contains { results, next, previous, count }
+export const getModels = async ({ page, limit, search, category, tag }) => {
+  const params = {
+    page,
+    page_size: limit,
+  };
+
+  if (search) params.search = search;
+  if (category && category !== "all") params.categories = category;
+  if (tag && tag !== "all") params.tags = tag;
+
+  const response = await axios.get(MODELS_API_ENDPOINT, { params });
+
+  return response.data;
 };

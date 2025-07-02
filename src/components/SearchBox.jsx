@@ -1,19 +1,21 @@
-import React, { useState } from 'react'
-import { Input } from "./ui/input"
-import { Button } from "./ui/button"
-import { X, Search } from "lucide-react"
+import React, { useState } from "react";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import { X, Search } from "lucide-react";
+import useModelFilterStore from "../stores/modelFilterStore";
 
-function SearchBox({ onSearch }) {
-    const [query, setQuery] = useState("")
+function SearchBox() {
+  const [query, setQuery] = useState("");
+  const setSearchTerm = useModelFilterStore((state) => state.setSearchTerm);
 
   const handleSearch = () => {
-    onSearch?.(query)
-  }
+    setSearchTerm(query);
+  };
 
   const handleClear = () => {
-    setQuery("")
-    onSearch?.("")
-  }
+    setQuery("");
+    setSearchTerm("");
+  };
   return (
     <div className="flex items-center gap-2 w-full max-w-xs rounded-md border border-input ">
       <Button
@@ -44,7 +46,7 @@ function SearchBox({ onSearch }) {
         </Button>
       )}
     </div>
-  )
+  );
 }
 
-export default SearchBox
+export default SearchBox;
