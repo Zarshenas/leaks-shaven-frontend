@@ -11,6 +11,12 @@ function SearchBox() {
   const handleSearch = () => {
     setSearchTerm(query);
   };
+  const handleEnterKey = (e) => {
+    if (e.key === "Enter" || e.keyCode === 13) {
+      e.preventDefault();
+      handleSearch();
+    }
+  };
 
   const handleClear = () => {
     setQuery("");
@@ -21,16 +27,17 @@ function SearchBox() {
       <Button
         variant="ghost"
         size="icon"
-        onClick={handleSearch}
+        onClick={() => handleSearch()}
         className="rounded-md bg-muted"
       >
         <Search className="w-4 h-4 text-muted-foreground" />
       </Button>
 
       <Input
-        type="text"
+        type="search"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={(e) => handleEnterKey(e)}
         placeholder="Search..."
         className="dark:bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 px-2"
       />
